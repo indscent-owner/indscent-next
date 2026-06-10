@@ -1,3 +1,4 @@
+export const runtime = 'edge'
 export async function POST(request, env) {
   try {
     const body = await request.json()

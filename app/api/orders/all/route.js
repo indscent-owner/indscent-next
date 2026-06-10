@@ -1,5 +1,7 @@
+export const runtime = 'edge'
 import { NextResponse } from 'next/server'
 import db from '../../../../db/connection.js'
+
 
 export async function GET() {
   const stmt = db.prepare(`SELECT * FROM orders ORDER BY id DESC`)

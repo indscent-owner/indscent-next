@@ -1,3 +1,4 @@
+export const runtime = 'edge'
 export async function GET(request, env) {
   try {
     const { results } = await env.indscent_db.prepare(`
