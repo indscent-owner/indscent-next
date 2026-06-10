@@ -39,63 +39,42 @@ export default function HomePage() {
           }}
         />
 
-{/* Buttons */}
-<div style={{ display: 'flex', flexDirection: 'column', gap: '15px', marginTop: '20px' }}>
-  <a
-    href="/client"
-    style={{
-      background: '#121212',
-      color: '#E5C158',
-      border: '2px solid #E5C158',
-      padding: '14px',
-      fontWeight: 'bold',
-      textTransform: 'uppercase',
-      textDecoration: 'none',
-      borderRadius: '6px',
-      transition: 'all 0.3s ease',
-      textAlign: 'center'
-    }}
-  >
-    Place an Order
-  </a>
-
-  <a
-    href="/gallery"
-    style={{
-      background: '#121212',
-      color: '#E5C158',
-      border: '2px solid #E5C158',
-      padding: '14px',
-      fontWeight: 'bold',
-      textTransform: 'uppercase',
-      textDecoration: 'none',
-      borderRadius: '6px',
-      transition: 'all 0.3s ease',
-      textAlign: 'center'
-    }}
-  >
-    View Gallery
-  </a>
-
-  <a
-    href="/api/catalog"
-    style={{
-      background: '#121212',
-      color: '#E5C158',
-      border: '2px solid #E5C158',
-      padding: '14px',
-      fontWeight: 'bold',
-      textTransform: 'uppercase',
-      textDecoration: 'none',
-      borderRadius: '6px',
-      transition: 'all 0.3s ease',
-      textAlign: 'center'
-    }}
-  >
-    Download Perfume List
-  </a>
-</div>
-
+        {/* Buttons */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', marginTop: '20px' }}>
+          <a
+            href="/client"
+            style={{
+              background: '#121212',
+              color: '#E5C158',
+              border: '2px solid #E5C158',
+              padding: '14px',
+              fontWeight: 'bold',
+              textTransform: 'uppercase',
+              textDecoration: 'none',
+              borderRadius: '6px',
+              transition: 'all 0.3s ease'
+            }}
+          >
+            Place an Order
+          </a>
+          <a
+            href="/gallery"
+            style={{
+              background: '#121212',
+              color: '#E5C158',
+              border: '2px solid #E5C158',
+              padding: '14px',
+              fontWeight: 'bold',
+              textTransform: 'uppercase',
+              textDecoration: 'none',
+              borderRadius: '6px',
+              transition: 'all 0.3s ease'
+            }}
+          >
+            View Gallery
+          </a>
+          <a href="/api/catalog">Download Perfume List</a>
+        </div>
 
         {/* Footer with clickable link */}
         <div style={{ marginTop: '25px', fontSize: '12px', color: '#ccc' }}>

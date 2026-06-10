@@ -1,0 +1,12 @@
+name = "indscent-next"
+compatibility_date = "2026-06-10"
+
+# Serve your Next.js build output
+[assets]
+directory = "./.next"   # or "./out" if you run `next export`
+
+# Bindings for Cloudflare D1
+[[d1_databases]]
+binding = "indscent_db"   # must match context.env.indscent_db in your routes
+database_name = "indscent_db"
+database_id = "436e1378-b023-40a5-ad70-5f091968e89f"

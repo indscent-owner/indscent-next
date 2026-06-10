@@ -1,0 +1,12 @@
+[
+  { "id": 1, "name": "Standard Perfume", "size": "60ml", "price": 150 },
+  { "id": 2, "name": "Mini Perfume", "size": "30ml", "price": 100 },
+  { "id": 3, "name": "Perfume Pen", "size": "10ml", "price": 55 },
+  { "id": 4, "name": "Shower Gel", "size": "250ml", "price": 50 },
+  { "id": 5, "name": "Body Lotion", "size": "250ml", "price": 65 },
+  { "id": 6, "name": "Body Powder", "size": "250ml", "price": 50 },
+  { "id": 7, "name": "Hand Lotion", "size": "50ml", "price": 25 },
+  { "id": 8, "name": "Liquid Soap", "size": "250ml", "price": 45 },
+  { "id": 9, "name": "Roll-On Deodorant", "size": "80ml", "price": 35 },
+  { "id": 10, "name": "Perfume Sample", "size": "5ml", "price": 20 }
+]
