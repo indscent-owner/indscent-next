@@ -1,6 +1,6 @@
+'use client'
 export const runtime = 'edge'
 
-'use client'
 import { useState } from 'react'
 
 // Example product list (replace with your actual JSON or DB data)

@@ -1,6 +1,6 @@
+"use client"
 export const runtime = 'edge'
 
-"use client"
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { dashboardTheme as t } from "../styles/dashboardTheme"

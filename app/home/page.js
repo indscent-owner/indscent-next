@@ -1,6 +1,6 @@
+'use client'
 export const runtime = 'edge'
 
-'use client'
 import React from 'react'
 
 export default function HomePage() {
