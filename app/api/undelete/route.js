@@ -1,3 +1,5 @@
+export const runtime = 'edge'
+
 export async function POST(request, context) {
   try {
     const db = context.env.indscent_db

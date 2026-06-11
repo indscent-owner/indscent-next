@@ -1,6 +1,7 @@
+export const runtime = 'edge'
+
 'use client'
 import React from 'react'
-import Link from 'next/link'   // ✅ Import Link
 
 export default function HomePage() {
   return (
@@ -74,13 +75,12 @@ export default function HomePage() {
             View Gallery
           </a>
           <a href="/api/catalog">Download Perfume List</a>
+
         </div>
 
-        {/* Footer with clickable link */}
+        {/* Footer */}
         <div style={{ marginTop: '25px', fontSize: '12px', color: '#ccc' }}>
-          <Link href="/adminlogin" style={{ textDecoration: 'none', color: '#ccc' }}>
-            © 2026 inDscent Fragrances
-          </Link>
+          © 2026 inDscent Fragrances
         </div>
       </div>
 
