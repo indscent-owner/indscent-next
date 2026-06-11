@@ -1,12 +1,13 @@
 export const runtime = 'edge'
-import { NextResponse } from 'next/server'
-import db from '../../../../db/connection.js'
 
+export async function GET(request, context) {
+  const db = context.env.indscent_db
 
-export async function GET() {
-  const stmt = db.prepare(`SELECT * FROM orders ORDER BY id DESC`)
-  const rows = stmt.all()
-  return NextResponse.json(rows.map(r => ({
+  const { results } = await db.prepare(`
+    SELECT * FROM Orders ORDER BY id DESC
+  `).all()
+
+  return Response.json(results.map(r => ({
     ...r,
     cartItems: JSON.parse(r.cartItems)
   })))

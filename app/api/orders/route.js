@@ -1,5 +1,6 @@
 export const runtime = 'edge'
-export async function POST(request, env) {
+
+export async function POST(request, context) {
   try {
     const body = await request.json()
     const { name, surname, contact, email, cart, deviceToken } = body
@@ -9,24 +10,15 @@ export async function POST(request, env) {
     }
 
     const placedAt = new Date().toISOString()
+    const db = context.env.indscent_db
 
-    // Local dev fallback
-    if (!env?.indscent_db) {
-      return new Response(JSON.stringify({
-        mock: true,
-        order: { id: Math.floor(Math.random() * 1000), name, surname, contact, email, deviceToken, placedAt, cart }
-      }), { status: 200 })
-    }
-
-    // Real DB insert
-    const orderStmt = env.indscent_db.prepare(`
+    const orderResult = await db.prepare(`
       INSERT INTO Orders (name, surname, contact, email, deviceToken, placedAt)
       VALUES (?, ?, ?, ?, ?, ?)
-    `).bind(name, surname, contact, email, deviceToken, placedAt)
-    const orderResult = await orderStmt.run()
+    `).bind(name, surname, contact, email, deviceToken, placedAt).run()
 
     for (const item of cart) {
-      await env.indscent_db.prepare(`
+      await db.prepare(`
         INSERT INTO OrderItems (orderId, fragrance, product, size, qty, price, gender)
         VALUES (?, ?, ?, ?, ?, ?, ?)
       `).bind(
@@ -47,26 +39,19 @@ export async function POST(request, env) {
   }
 }
 
-export async function GET(request, env) {
+export async function GET(request, context) {
   try {
     const url = new URL(request.url)
     const deviceToken = url.searchParams.get("deviceToken")
-
-    if (!env?.indscent_db) {
-      // Local mock data
-      return new Response(JSON.stringify([
-        { id: 1, name: "Mock User", surname: "One", email: "mock1@example.com", placedAt: new Date().toISOString(), deviceToken },
-        { id: 2, name: "Mock User", surname: "Two", email: "mock2@example.com", placedAt: new Date().toISOString(), deviceToken }
-      ]), { status: 200 })
-    }
+    const db = context.env.indscent_db
 
     if (deviceToken) {
-      const { results } = await env.indscent_db.prepare(`
+      const { results } = await db.prepare(`
         SELECT * FROM Orders WHERE deviceToken = ? ORDER BY placedAt DESC LIMIT 5
       `).bind(deviceToken).all()
       return new Response(JSON.stringify(results), { status: 200 })
     } else {
-      const { results } = await env.indscent_db.prepare(`
+      const { results } = await db.prepare(`
         SELECT * FROM Orders ORDER BY placedAt DESC
       `).all()
       return new Response(JSON.stringify(results), { status: 200 })
