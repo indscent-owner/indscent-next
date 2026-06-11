@@ -1,8 +1,7 @@
+"use client"
 export const runtime = 'edge'
 
 import Link from "next/link"
-
-export const runtime = 'edge'
 
 export default async function RecentPage() {
   const res = await fetch("/api/orders?deviceToken=seed-device", { cache: "no-store" })
