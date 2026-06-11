@@ -1,15 +1,14 @@
 export const runtime = 'edge'
-import { NextResponse } from 'next/server'
-import db from '../../../../db/connection.js'
 
-export async function POST(req) {
+export async function POST(request, context) {
   try {
-    const body = await req.json()
-    const stmt = db.prepare(`
-      INSERT INTO orders (order_date, device_id, name, surname, contact, email, cartItems)
+    const body = await request.json()
+    const db = context.env.indscent_db
+
+    const result = await db.prepare(`
+      INSERT INTO Orders (order_date, device_id, name, surname, contact, email, cartItems)
       VALUES (?, ?, ?, ?, ?, ?, ?)
-    `)
-    const result = stmt.run(
+    `).bind(
       new Date().toISOString(),
       body.device_id,
       body.name,
@@ -17,10 +16,10 @@ export async function POST(req) {
       body.contact,
       body.email,
       JSON.stringify(body.cartItems)
-    )
+    ).run()
 
-    return NextResponse.json({ success: true, orderNumber: result.lastInsertRowid })
+    return Response.json({ success: true, orderNumber: result.lastInsertRowid })
   } catch (err) {
-    return NextResponse.json({ success: false, error: err.message }, { status: 500 })
+    return Response.json({ success: false, error: err.message }, { status: 500 })
   }
 }
